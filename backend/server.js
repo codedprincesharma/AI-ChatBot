@@ -9,14 +9,12 @@ const PORT = process.env.PORT || 3000
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
+
 io.on("connection", (socket) => {
-  socket.on("disconnect", () => {
-    console.log("A user disconnect");
-  })
   socket.on("ai-message", async (data) => {
-    console.log("user prompt:", data.prompt)
+    console.log("postman prompt:", data.prompt)
     const response = await generateResponse(data.prompt)
-    console.log("Ai response:", response);
+    socket.emit("ai-message-responce",{response})
   })
 });
 
