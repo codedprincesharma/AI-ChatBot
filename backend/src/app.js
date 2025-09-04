@@ -1,9 +1,10 @@
 import express from "express";
 const app = express()
 
-app.get("/getdata", (req, res) => {
-  res.send("Hello from express")
+app.get('/' ,(req,res)=>{
+    res.send("API is running...")
 })
 
 
-export default app
+
+export default app;
